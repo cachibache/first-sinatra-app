@@ -19,7 +19,27 @@ require 'erb'
 
 
 get '/' do
-  4.times {Station.new}
+
+  @stations = []
+  4.times { @stations << Station.new }
+  @stations.each { |station| station << 30.times do
+      Bike.new
+  end }
+
+
+  @people = []
+  1000.times { @people << Person.new }
+  @people.each { |p| p.take_bike_from @stations[rand(4)]  if rand < 0.25 }
+
+  @people.each do |p|
+    if p.has_bike? != nil && rand < 0.3
+      @stations.shuffle!.each do |station|
+        station << p.release_bike @bike
+        break if p.has_bike? == nil
+      end
+    end
+
+
   erb :control
 end
 
@@ -28,9 +48,9 @@ get '/results' do
   erb :results
 end
 
-# Test at <appname>.heroku.com (you'll need to create your app first!)
+  # Test at <appname>.heroku.com (you'll need to create your app first!)
 
-# Usage: partial :foo
+  # Usage: partial :foo
 helpers do
   def partial(page, options={})
     erb page, options.merge!(:layout => false)
