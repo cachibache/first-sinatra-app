@@ -1,0 +1,4 @@
+class Garage < Location
+
+
+end
