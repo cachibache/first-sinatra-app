@@ -2,34 +2,34 @@ class Location
 
   include DataMapper::Resource
   
-  # property :id
-  # property :capacity
+  property :id, Serial
+  # property :bikes, String
 
   attr_reader :bikes
 
   DEFAULT_CAPACITY = 30
 
   def initialize(options = {})
-    @capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
-    @bikes = []    
+    capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
+    # bikes = []
   end
 
   def empty?
-    @bikes.empty?
+    bikes.empty?
   end
 
   def << bike
-    raise "Location full" unless @bikes.length < @capacity
-    @bikes << bike
+    raise "Location full" unless bikes.length < capacity
+    bikes << bike
   end
 
   def release_bike(bike)
     raise "No such bike" unless include?(bike)
-    @bikes.delete bike
+    bikes.delete bike
   end
 
   def include?(bike)
-    @bikes.include? bike
+    bikes.include? bike
   end
 
   def take_bike_from(location)

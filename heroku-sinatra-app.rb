@@ -10,7 +10,7 @@ require 'erb'
 
 require './lib/bike.rb'
 # require './lib/garage.rb'
-# require './lib/location.rb'
+require './lib/location.rb'
 # require './lib/person.rb'
 # require './lib/station.rb'
 # require './lib/van.rb'
@@ -30,12 +30,29 @@ post '/add_bikes' do
   bike = Bike.new
   bike.break! if params[:status] == "Broken"
   bike.save
+
   redirect "/show_bikes"
 end
 
 get '/show_bikes' do
   bikes = Bike.all
   erb :show_bikes, :locals => {:bikes => bikes}
+end
+
+get '/station' do
+  erb :station
+end
+
+post '/add_station' do
+  station = Station.new
+  station.save
+
+  redirect "/show_station"
+end
+
+get '/show_station' do
+  stations = Station.all
+  erb :show_stations, :locals => {:stations => stations}
 end
 
 # @stations = []
