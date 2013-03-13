@@ -4,6 +4,6 @@ These are my bikes:
 <ul>
 <% bikes.each do |bike| %>
   <li><%= bike.id %>
-  <%= bike.broken %></li>
+  <%= bike.broken ? "Broken" : "Fixed" %></li>
 <% end %>
 </ul>
