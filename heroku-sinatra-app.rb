@@ -19,26 +19,20 @@ DataMapper::setup(:default, "postgres://localhost/boris_bikes")
 DataMapper.finalize.auto_upgrade!
 
 get '/' do 
-  def status?
-    @bike.broken? ? "broken." :    "fixed."
-  end
-  erb :control
+  erb :index
 end
 
-get '/new_bike' do
+get '/add_bikes' do
   #create form to add bike
-  erb :new_bike
+  erb :add_bikes
 end
 
-get '/bikes' do
-  erb :bikes
-end
-
-post '/bikes' do
+post '/add_bikes' do
   #save bike to database
   #redirect to /bikes
   bike = Bike.new
-  params
+  bike.break! if params[:status] == "Broken"
+  bike.save
   erb :show_bikes
 end
 
