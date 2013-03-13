@@ -1,4 +1,10 @@
+
 class Person
+
+  include DataMapper::Resource
+
+  # property :id
+  # property :bike
 
   def initialize
     @bike = nil

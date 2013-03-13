@@ -1,5 +1,10 @@
 class Location
 
+  include DataMapper::Resource
+  
+  # property :id
+  # property :capacity
+
   attr_reader :bikes
 
   DEFAULT_CAPACITY = 30

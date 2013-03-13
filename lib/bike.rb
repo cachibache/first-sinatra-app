@@ -1,5 +1,10 @@
 class Bike
 
+  include DataMapper::Resource
+
+  property :id,     Serial
+  property :broken, Boolean, :default => false
+
   def initialize
     @broken = false
   end

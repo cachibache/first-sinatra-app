@@ -3,6 +3,9 @@ source "https://rubygems.org"
 
 gem "sinatra"
 gem "sinatra-contrib"
+gem "data_mapper"
+gem "dm-postgres-adapter"
+gem "shotgun"
 
 gem "minitest" # the test framework
 gem "guard" # the program that runs the tests on every file change
