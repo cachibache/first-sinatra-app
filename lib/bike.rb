@@ -6,18 +6,18 @@ class Bike
   property :broken, Boolean, :default => false
 
   def initialize
-    broken = false
+    self.broken = false
   end
 
   def broken?
-    broken
+    self.broken
   end
 
   def break!
-    broken = true
+    self.broken = true
   end
 
   def fix!
-    broken = false
+    self.broken = false
   end
 end

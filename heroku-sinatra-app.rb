@@ -23,22 +23,19 @@ get '/' do
 end
 
 get '/add_bikes' do
-  #create form to add bike
   erb :add_bikes
 end
 
 post '/add_bikes' do
-  #save bike to database
-  #redirect to /bikes
   bike = Bike.new
   bike.break! if params[:status] == "Broken"
   bike.save
-  erb :show_bikes
+  redirect "/show_bikes"
 end
 
 get '/show_bikes' do
-  # show all bikes
-  erb :show_bikes
+  bikes = Bike.all
+  erb :show_bikes, :locals => {:bikes => bikes}
 end
 
 # @stations = []

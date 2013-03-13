@@ -1,2 +1,9 @@
+<br /><br />
+These are my bikes:
 <br />
-These are my bikes
+<ul>
+<% bikes.each do |bike| %>
+  <li><%= bike.id %>
+  <%= bike.broken %></li>
+<% end %>
+</ul>
