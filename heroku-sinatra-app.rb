@@ -15,7 +15,7 @@ require './lib/location.rb'
 # require './lib/station.rb'
 # require './lib/van.rb'
 
-DataMapper::setup(:default, "postgres://localhost/boris_bikes")
+DataMapper::setup(:default, ENV['DATABASE_URL'] || 'postgres://localhost/boris_bikes')
 DataMapper.finalize.auto_upgrade!
 
 get '/' do 
